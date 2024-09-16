@@ -108,22 +108,65 @@ def plot_transform_cont_method1(signal,tiempo, a, to):
     td = tiempo - to
     tn = td / a
     
-    if to > 0 and a > 1:
-      st.write('**Se adelanta y se comprime la señal.**')
-    elif to > 0 and a < 1:
-      st.write('**Se adelanta, se refleja y se expande la señal.**')
-    elif to > 0 and a ==1:
-      st.write('**Se adelanta la señal.**')
-    elif to < 0 and a > 1:
-      st.write('**Se retarda y se comprime la señal.**')
-    elif to < 0 and a < 1:
-      st.write('**Se retarda, se refleja y se expande la señal.**')
-    elif to < 0 and a ==1:
-      st.write('**Se retrasa la señal.**')
-    elif to == 0 and a > 1:
-      st.write('**Se comprime la señal.**')
-    elif to == 0 and a < 1:
-      st.write('**Se refleja y se expande la señal.**')
+    reflejar = False
+    if a < 0:  
+        reflejar = True
+        
+    a_text = abs(a)
+
+    # cuando se adelanta
+    if to > 0:
+        if a_text > 1:
+            if reflejar:
+                st.write('**Se adelanta, se refleja y se comprime la señal.**')
+            else:
+                st.write('**Se adelanta y se comprime la señal.**')
+        elif a_text < 1:
+            if reflejar:
+                st.write('**Se adelanta, se refleja y se expande la señal.**')
+            else:
+                st.write('**Se adelanta y se expande la señal.**')
+        elif a_text == 1:
+            if reflejar:
+                st.write('**Se adelanta y se refleja la señal.**')
+            else:
+                st.write('**Se adelanta la señal.**')
+
+    # cuando se retrasa
+    elif to < 0:
+        if a_text > 1:
+            if reflejar:
+                st.write('**Se retarda, se refleja y se comprime la señal.**')
+            else:
+                st.write('**Se retarda y se comprime la señal.**')
+        elif a_text < 1:
+            if reflejar:
+                st.write('**Se retarda, se refleja y se expande la señal.**')
+            else:
+                st.write('**Se retarda y se expande la señal.**')
+        elif a_text == 1:
+            if reflejar:
+                st.write('**Se retarda y se refleja la señal.**')
+            else:
+                st.write('**Se retarda la señal.**')
+
+    # sin desp
+    elif to == 0:
+        if a_text > 1:
+            if reflejar:
+                st.write('**Se comprime y se refleja la señal.**')
+            else:
+                st.write('**Se comprime la señal.**')
+        elif a_text < 1:
+            if reflejar:
+                st.write('**Se expande y se refleja la señal.**')
+            else:
+                st.write('**Se expande la señal.**')
+        elif a_text == 1:
+            if reflejar:
+                st.write('**Se refleja la señal.**')
+            else:
+                st.write('**La señal no cambia.**')
       
     if to < 0:
       st.latex(rf'x(t {to})')
@@ -184,22 +227,65 @@ def plot_transform_cont_method2(signal,tiempo, a, to):
     
     tn = tesc - (to/a)
       
-    if to > 0 and a > 1:
-      st.write('**Se adelanta y se comprime la señal.**')
-    elif to > 0 and a < 1:
-      st.write('**Se adelanta, se refleja y se expande la señal.**')
-    elif to > 0 and a ==1:
-      st.write('**Se adelanta la señal.**')
-    elif to < 0 and a > 1:
-      st.write('**Se retarda y se comprime la señal.**')
-    elif to < 0 and a < 1:
-      st.write('**Se retarda, se refleja y se expande la señal.**')
-    elif to < 0 and a ==1:
-      st.write('**Se retrasa la señal.**')
-    elif to == 0 and a > 1:
-      st.write('**Se comprime la señal.**')
-    elif to == 0 and a < 1:
-      st.write('**Se refleja y se expande la señal.**')
+    reflejar = False
+    if a < 0:  
+        reflejar = True
+        
+    a_text = abs(a)
+
+    # cuando se adelanta
+    if to > 0:
+        if a_text > 1:
+            if reflejar:
+                st.write('**Se adelanta, se refleja y se comprime la señal.**')
+            else:
+                st.write('**Se adelanta y se comprime la señal.**')
+        elif a_text < 1:
+            if reflejar:
+                st.write('**Se adelanta, se refleja y se expande la señal.**')
+            else:
+                st.write('**Se adelanta y se expande la señal.**')
+        elif a_text == 1:
+            if reflejar:
+                st.write('**Se adelanta y se refleja la señal.**')
+            else:
+                st.write('**Se adelanta la señal.**')
+
+    # cuando se retrasa
+    elif to < 0:
+        if a_text > 1:
+            if reflejar:
+                st.write('**Se retarda, se refleja y se comprime la señal.**')
+            else:
+                st.write('**Se retarda y se comprime la señal.**')
+        elif a_text < 1:
+            if reflejar:
+                st.write('**Se retarda, se refleja y se expande la señal.**')
+            else:
+                st.write('**Se retarda y se expande la señal.**')
+        elif a_text == 1:
+            if reflejar:
+                st.write('**Se retarda y se refleja la señal.**')
+            else:
+                st.write('**Se retarda la señal.**')
+
+    # sin desp
+    elif to == 0:
+        if a_text > 1:
+            if reflejar:
+                st.write('**Se comprime y se refleja la señal.**')
+            else:
+                st.write('**Se comprime la señal.**')
+        elif a_text < 1:
+            if reflejar:
+                st.write('**Se expande y se refleja la señal.**')
+            else:
+                st.write('**Se expande la señal.**')
+        elif a_text == 1:
+            if reflejar:
+                st.write('**Se refleja la señal.**')
+            else:
+                st.write('**La señal no cambia.**')
 
     if a != 1:
       st.latex(rf'x({a}t)')
